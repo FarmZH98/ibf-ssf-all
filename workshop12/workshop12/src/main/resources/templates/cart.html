@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>This is a shopping cart page</h1>
+        <table>
+            <tr>
+                <td>Item</td>
+                <td>quantity</td>
+            </tr>
+            <tr>
+                <form action="/cart">
+                    <td><input type="text" name="cartItem"></td>
+                    <td><input type="number" name="quantity"></td>
+                    <input type="hidden" name="existingCart" th:value="${cartString}">
+                    <button type="submit">Add</button>
+                </form>
+                
+            </tr>
+        </table>
+        <div class="befList"></div>
+        <!-- TODO: loop through the cart list below -->
+        <table id="cart">
+            <thead>
+                <tr>
+                    <td>Item</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="i: ${cartList}">
+                    <td>
+                        <span data-th-text="${i.itemName}"></span>
+                    </td>
+                    <td>
+                        <span data-th-text="${i.quantity}"></span>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+
+    </body>
+</html>

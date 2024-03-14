@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<form method="POST" action="/task" data-th-object="${task}">
+			<table>
+				<tr>
+					<td>Task: </td>
+					<td>
+						<input type="text" name="task" size="30" data-th-field="*{task}">
+						<!-- Chuk style -->
+						<span class="error" data-th-if="${#fields.hasErrors('task')}"
+							data-th-each="err: ${#fields.errors('task')}"
+							data-th-text="${err}">
+
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Priority: </td>
+					<td>
+						<select name="priority" data-th-field="*{priority}">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Due Date:</td>
+					<td>
+						<input type="date" name="dueDate" data-th-field="*{dueDate}">
+						<span class="error" data-th-if="${#fields.hasErrors('dueDate')}"
+							data-th-each="err: ${#fields.errors('dueDate')}"
+							data-th-text="${err}">
+
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="submit">Add</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		
+
+		<table class="existingList" data-th-if="${#lists.size(todoList) > 0}">
+			<thead>
+				<tr>
+					<th>Task</th>
+					<th>Priority</th>
+					<th>Due Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- dummy to be removed below -->
+				<tr data-th-each="i: ${todoList}">
+					<td> 
+						<span data-th-text="${i.task}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${i.priority}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${i.dueDate}"></span>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 data-th-unless="${#lists.size(todoList) > 0}">
+			wow you so free.
+		</h3>
+	</body>
+</html>

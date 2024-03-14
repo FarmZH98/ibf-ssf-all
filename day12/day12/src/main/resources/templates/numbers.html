@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>The random number is </h2>
+    <h2 data-th-text="${rndNum}"></h2>
+    <div data-th-if="${odd}">
+        <h3>This is an odd number</h3>
+    </div>
+    <h3 data-th-unless="${odd}"> This is an even number</h3>
+</body>
+</html>

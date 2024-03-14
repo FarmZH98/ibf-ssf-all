@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <title>Success</title>
+    </head>
+    <h1>Successfully added</h1>
+    <br>
+    <a class="btn btn-secondary" data-th-href="@{/employees/list}">View List of Employees</a>
+    <br>
+    <body>
+        <table class="table table-striped">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Birthday</th>
+                    <th>Salary</th>
+					<th>Email</th>
+					<th>Phone Number</th>
+                    <th>Postal Code</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td> 
+						<span data-th-text="${savedEmployee.firstName}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${savedEmployee.lastName}"></span>
+					</td>
+					<td> 
+						<span data-th-text="${savedEmployee.birthday}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${savedEmployee.salary}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${savedEmployee.email}"></span>
+					</td>
+					<td> 
+						<span data-th-text="${savedEmployee.phoneNo}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${savedEmployee.postalCode}"></span>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+    </body>
+</html>

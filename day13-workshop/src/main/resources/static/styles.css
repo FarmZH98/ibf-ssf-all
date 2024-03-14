@@ -1,0 +1,12 @@
+.error {
+    font-style: italic;
+    color: red;
+}
+
+.existingList {
+    border: 2px solid black;
+}
+
+.existingList tr, .existingList td {
+    border: 1px solid black;
+}

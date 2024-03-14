@@ -1,0 +1,11 @@
+button {
+    float: right;
+}
+
+.befList {
+    height: 50px;
+}
+
+#cart, #cart thead, #cart tbody  {
+    border: 2px solid black;
+}
