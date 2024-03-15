@@ -26,7 +26,7 @@ docker --version
 
 docker build at project root ("0.01 is for versioning)
 ```
-docker build -t FarmZH98/day15:0.01 .
+docker build -t FarmZH98/day16-workshop:0.01 .
 ```
 
 to view existing docker images
@@ -36,7 +36,7 @@ docker image ls
 
 to run it 
 ```
-docker run -d -p 8080:8080 FarmZH98/day15:0.01 .
+docker run -d -p 8080:8080 FarmZH98/day16-workshop:0.01 .
 ```
 
 view it

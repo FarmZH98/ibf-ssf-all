@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Here is a list of games</h1>
+        <table class="gameList" data-th-unless="${gameMap.isEmpty()}">
+			<thead>
+				<tr>
+					<th>GameID</th>
+					<th>Home Team</th>
+					<th>Opp Team</th>
+                    <th>Venue</th>
+					<th>Game Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- dummy to be removed below -->
+				<tr data-th-each="i: ${gameMap}">
+					<td> 
+						<span data-th-text="${i.value.gameId}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${i.value.homeTeam}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${i.value.oppTeam}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${i.value.venue}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${#dates.format(i.value.gameDate, 'E, dd-MMM-yyyy')}"></span>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+        <h3 data-th-if="${gameMap.isEmpty()}">
+			Please input data via api first.
+		</h3>
+
+    </body>
+</html>
