@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class Game implements Serializable{
@@ -28,7 +29,7 @@ public class Game implements Serializable{
     private String venue;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotEmpty(message = "Game Date cannot be empty")
+    @NotNull(message = "Game Date cannot be empty")
     private Date gameDate;
 
 
