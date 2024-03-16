@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>Success</title>
+    </head>
+    <body>
+        <h1>Successfully added</h1>
+    <br>
+    <a class="btn btn-secondary" data-th-href="@{/boardgame/list}">View List of Games</a>
+    <br>
+    <body>
+        <table class="table table-striped">
+			<thead>
+				<tr>
+					<th>GameID</th>
+					<th>Home Team</th>
+					<th>Opp Team</th>
+                    <th>Venue</th>
+					<th>Game Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td> 
+						<span data-th-text="${savedGame.gameId}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${savedGame.homeTeam}"></span>
+					</td>
+					<td> 
+						<span data-th-text="${savedGame.oppTeam}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${savedGame.venue}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${#dates.format(savedGame.gameDate, 'E, dd-MMM-yyyy')}"></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/">Back to insert new game records</a>
+    </body>
+</html>

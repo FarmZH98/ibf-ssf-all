@@ -15,7 +15,7 @@ COPY .mvn .mvn
 RUN mvn package -Dmaven.test.skip=true
 
 #specify environment variables
-ENV PORT=8080
+ENV PORT=3000
 # ENV SPRING_DATA_REDIS_HOST=localhost
 # ENV SPRING_DATA_REDIS_PORT=6379
 # ENV SPRING_DATA_REDIS_USERNAME=NOT_SET
@@ -25,4 +25,4 @@ ENV PORT=8080
 EXPOSE ${PORT}
 
 # start the application using CMD or ENTRYPOINT
-ENTRYPOINT java -jar target/day16-workshop-0.0.1-SNAPSHOT.jar
+ENTRYPOINT SERVER_PORT=${PORT} java -jar target/day16-workshop-0.0.1-SNAPSHOT.jar

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>Insert Game Data</title>
+    </head>
+    <body>
+        <h1>Welcome to Board Game Insertion page. Please insert data below.</h1>
+        <div class="container">
+
+            <form method="POST" th:action="@{/boardgame/add}" th:object="${newGame}">
+    
+                <div class="mb-3">
+                    <label for="gameId" class="form-label">Game ID</label>
+                    <input type="text" class="form-control" name="gameId" th:field="*{gameId}">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('gameId')}" th:errors="*{gameId}"></div>
+    
+                <div class="mb-3">
+                    <label for="homeTeam" class="form-label">Home Team</label>
+                    <input type="text" class="form-control" name="homeTeam" th:field="*{homeTeam}">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('homeTeam')}" th:errors="*{homeTeam}"></div>
+    
+                <div class="mb-3">
+                    <label for="oppTeam" class="form-label">Opponent Team</label>
+                    <input type="text" class="form-control" name="oppTeam" th:field="*{oppTeam}">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('oppTeam')}" th:errors="*{oppTeam}"></div>
+                
+                <div class="mb-3">
+                    <label for="gameDate" class="form-label">Date of Game</label>
+                    <input type="date" class="form-control" name="gameDate" th:field="*{gameDate}">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('gameDate')}" th:errors="*{gameDate}"></div>
+    
+                <div class="mb-3">
+                    <label for="venue" class="form-label">Venue</label>
+                    <input type="text" class="form-control" name="venue" th:field="*{venue}">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}"></div>
+    
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    
+        </div>
+    
+        <a href="/boardgame/list">Click here to view game records</a>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>

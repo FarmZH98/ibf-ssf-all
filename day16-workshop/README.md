@@ -52,7 +52,7 @@ docker stop 83e8
 ### REDIS info
 viaduct.proxy.rlwy.net - SPRING_DATA_REDIS_HOST
 wtfmELkLFCkwGnzIrAnKtGLBRXaHCwYf
-39254
+43925
 default
 
 

@@ -4,14 +4,31 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class Game implements Serializable{
     // put in the relevant validations you feel required yourself
     // to practice and test your understanding on spring validation
 
+    @NotEmpty(message = "gameID cannot be empty")
+    @Size(min = 5, max = 15, message = "gameID must be between 5-15 characters")
     private String gameId;
+
+    @NotEmpty(message = "homeTeam cannot be empty")
+    @Size(min = 5, max = 15, message = "homeTeam must be between 5-15 characters")
     private String homeTeam;
+
+    @NotEmpty(message = "oppTeam cannot be empty")
+    @Size(min = 5, max = 15, message = "oppTeam must be between 5-15 characters")
     private String oppTeam;
+
     private String venue;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotEmpty(message = "Game Date cannot be empty")
     private Date gameDate;
 
 
