@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>City Weather</title>
+    </head>
+    <body>
+        <h1 data-th-text="${city}"></h1>
+        <!-- <div class="existingList" data-th-if="${#lists.size(cityWeatherInfo) > 0}">
+            <div data-th-each="i: ${cityWeatherInfo}">
+                <label data-th-text="${i.title}"></label>	
+                <img data-th-src="${i.url}" data-th-alt="${i.title}">
+            </div>
+        </div> -->
+        <table class="existingList" data-th-if="${#lists.size(cityWeatherInfo) > 0}">
+			<tbody>
+				<tr data-th-each="i: ${cityWeatherInfo}">
+                    <!-- url: https://openweathermap.org/img/wn/10d@2x.png -->
+                    <!-- "@{'https://openweathermap.org/img/wn/' + ${icon} + '@2x.png'}" -->
+					<td> 
+						<img data-th-src="@{'https://openweathermap.org/img/wn/' + ${i.icon} + '@2x.png'}" alt="weather icon">
+					</td>
+					<td> 
+                        <div>
+                            <span>description: </span>
+                            <span data-th-text="${i.description}"></span>
+                        </div>
+                        <div>
+                            <span>Temperature (°C): </span>
+                            <span data-th-text="${i.temp}"></span>
+                        </div>
+                        <div>
+                            <span>Feels like (°C): </span>
+                            <span data-th-text="${i.feels_like}"></span>
+                        </div>
+                        <div>
+                            <span>Minimum Temperature (°C): </span>
+                            <span data-th-text="${i.temp_min}"></span>
+                        </div>
+                        <div>
+                            <span>Max Temperature (°C): </span>
+                            <span data-th-text="${i.temp_max}"></span>
+                        </div>
+                        <div>
+                            <span>Pressure (hPa): </span>
+                            <span data-th-text="${i.pressure}"></span>
+                        </div>
+                        <div>
+                            <span>Humidity (%): </span>
+                            <span data-th-text="${i.humidity}"></span>
+                        </div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+        <h3 data-th-unless="${#lists.size(cityWeatherInfo) > 0}">
+            No weather info found
+        </h3>
+    </body>
+</html>

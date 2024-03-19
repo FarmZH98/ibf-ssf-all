@@ -7,11 +7,11 @@
     </head>
     <body>
         <div class="existingList" data-th-if="${#lists.size(imgList) > 0}">
-                    <div data-th-each="i: ${imgList}">
-                        <div data-th-text="${i.title}"></div>	
-                        <img data-th-src="${i.url}" data-th-alt="${i.title}">
-                    </div>
-            
+            <div data-th-each="i: ${imgList}">
+                <div data-th-text="${i.title}"></div>	
+                <img data-th-src="${i.url}" data-th-alt="${i.title}">
+            </div>
+        </div>
 
         <h3 data-th-unless="${#lists.size(imgList) > 0}">
 			No images found
