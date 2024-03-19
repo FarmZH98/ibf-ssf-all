@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Images</title>
+    </head>
+    <body>
+        <div class="existingList" data-th-if="${#lists.size(imgList) > 0}">
+                    <div data-th-each="i: ${imgList}">
+                        <div data-th-text="${i.title}"></div>	
+                        <img data-th-src="${i.url}" data-th-alt="${i.title}">
+                    </div>
+            
+
+        <h3 data-th-unless="${#lists.size(imgList) > 0}">
+			No images found
+		</h3>
+    </body>
+</html>
