@@ -3,7 +3,9 @@ package sff4.day17workshop.services;
 import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -14,10 +16,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
-import jakarta.json.JsonNumber;
+
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import sff4.day17workshop.models.CityWeather;
+import sff4.day17workshop.repo.WeatherAppRepo;
 
 
 //cache result for 30mins (REDIS)
@@ -29,13 +32,24 @@ public class WeatherAppService {
     @Value("${weather.key}") //way to get env variable in application properties
     private String apiKey;
 
+    @Autowired
+    WeatherAppRepo weatherAppRepo;
+
     public List<CityWeather> search(String city) {
 
+        //search REDIS if contains city weather
+        Optional<List<CityWeather>> opt = weatherAppRepo.getWeather(city);
+        if (opt.isPresent()) {
+            System.out.printf(">>>>> %s in cache\n", city);
+            return opt.get();
+        }
+
+        city.trim();
         // Construct the URL to call
         String url = UriComponentsBuilder
                 .fromUriString(SEARCH_URL)
                 .queryParam("appid", apiKey)
-                .queryParam("q", city) //can add another query param to get metric data instead of converting from our side
+                .queryParam("q", city.replaceAll(" ", "+")) //can add another query param to get metric data instead of converting from our side
                 .toUriString();
 
         System.out.printf("url >>> %s\n", url);
@@ -83,6 +97,8 @@ public class WeatherAppService {
             weatherList.add(cityWeather);
 
         }
+
+        weatherAppRepo.saveWeather(weatherList, city);
 
         return weatherList;
     }
