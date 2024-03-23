@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Login Page</title>
+	</head>
+	<body>
+
+		<h1>Login</h1>
+
+		<form method="POST" action="/login" data-th-object="${user}">
+		<!-- <form method="POST" action="/login"> -->
+			<table>
+				<tr>
+					<td>Username: </td>
+					<td> <input type="text" data-th-field="*{username}" size="30" required> </td>
+					<!-- <td> <input type="text" name="username" size="30" required> </td> -->
+				</tr>
+				<tr>
+					<td>Password: </td>
+					<td> <input type="password" data-th-field="*{passwordInput}" size="30" required> </td>
+					<!-- <td> <input type="password" name="passwordInput" size="30" required> </td> -->
+				</tr>
+				<tr data-th-if="*{attempts} > 0">
+					<td>Captcha: </td>
+					<td> 
+						<!-- include the 2 numbers in -->
+						<div>
+							<h5>Please complete the following captcha</h5>
+							<span data-th-text="*{number1}"></span> + <span data-th-text="*{number2}"></span> =
+								<input type="number" data-th-field="*{answer}" required>
+								<input type=number hidden data-th-field="*{attempts}">
+								<input type=number hidden data-th-field="*{number1}">
+								<input type=number hidden data-th-field="*{number2}">
+							
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td> <button type="submit">Login</button> </td>
+				</tr>
+			</table>
+
+			<div data-th-if="*{attempts} > 0">
+				<h4>You have 1 more attempt</h4>
+			</div>
+
+		</form>
+
+	</body>
+</html>
