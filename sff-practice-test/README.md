@@ -68,3 +68,9 @@ netstat -ano | findstr :<PORT>
 sudo lsof -iTCP -sTCP:LISTEN -P -n (linux)
 
 ### connect to redis online
+
+### Left with:
+1. bind errors
+2. priority change to drop down choices
+3. see chiew's code on filtering
+4. upload to railway

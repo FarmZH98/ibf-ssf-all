@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Task Added</title>
+    </head>
+    <body>
+        <h1>Successfully added</h1>
+        <br>
+        <a class="btn btn-secondary" data-th-href="@{/}">View All Tasks</a>
+        <br>
+        <table class="task">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Due Date</th>
+                    <th>Priority</th>
+					<th>Status</th>
+                    <th>Created at</th>
+					<th>Updated at</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- dummy to be removed below -->
+				<tr>
+					<td> 
+						<span data-th-text="${task.name}"></span>	
+					</td>
+					<td> 
+						<span data-th-text="${task.description}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${#dates.format(task.due_date, 'EEE, MM/dd/yyyy')}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${task.priority_level}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${task.status}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${#dates.format(task.created_at, 'EEE, MM/dd/yyyy')}"></span>	
+					</td>
+                    <td> 
+						<span data-th-text="${#dates.format(task.updated_at, 'EEE, MM/dd/yyyy')}"></span>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+        <a href="/add">Back to insert new task</a>
+    </body>
+</html>
