@@ -5,7 +5,7 @@ import java.util.Date;
 public class Utils {
     public static final String REDIS_ONE = "redismap";
     
-    public static final String FILE_PATH = "todos.txt";
+    public static final String FILE_PATH = "src/main/resources/static/todos.txt";
 
     public static final String KEY_TASK = "task";  
 

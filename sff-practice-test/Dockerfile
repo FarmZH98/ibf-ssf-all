@@ -20,6 +20,7 @@ WORKDIR /app_run
 
 ## rename the jar file to weather.jar, if not just put "."
 COPY --from=builder /app/target/sff-practice-test-0.0.1-SNAPSHOT.jar todo.jar
+COPY --from=builder /app/src/main/resources/static/todos.txt /app_run/src/main/resources/static/todos.txt
 
 ## Run. This line is not needed actually but putting here is like for documentation so we know we need to set this when running, the 8080 port is like this xxxx:8080*
 ENV PORT=8080
