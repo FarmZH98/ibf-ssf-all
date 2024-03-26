@@ -44,6 +44,10 @@
                     <td> 
 						<span data-th-text="${#dates.format(i.updated_at, 'EEE, MM/dd/yyyy')}"></span>	
 					</td>
+                    <td>
+                        <a class="btn btn-primary" data-th-href="@{/edit/{id}(id=${i.id})}">Edit</a>
+                        <a class="btn btn-danger" data-th-href="@{/delete/{id}(id=${i.id})}">Delete</a>
+                    </td>
 				</tr>
 			</tbody>
 		</table>

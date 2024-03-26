@@ -20,6 +20,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import jakarta.validation.Valid;
 import sg.edu.nus.iss.sffpracticetest.model.Task;
 import sg.edu.nus.iss.sffpracticetest.repo.TaskRepo;
 import sg.edu.nus.iss.sffpracticetest.utils.Utils;
@@ -76,19 +77,24 @@ public class TaskService {
     public List<Task> getSpecificTasks(String status) throws ParseException {
 
         List<Task> allTasks = readTaskFromFile();
-        List<Task> specificTaskList = new LinkedList<>();
-        for(int i=0; i<allTasks.size(); ++i) {
-            if(allTasks.get(i).getStatus().equals(status)) {
-                specificTaskList.add(allTasks.get(i));
-            }
-        }
+        List<Task> dummy = allTasks.stream()
+                        .filter(task -> status.equals(task.getStatus()))
+                        .toList();
+        // List<Task> specificTaskList = new LinkedList<>();
+        // for(int i=0; i<allTasks.size(); ++i) {
+        //     if(allTasks.get(i).getStatus().equals(status)) {
+        //         specificTaskList.add(allTasks.get(i));
+        //     }
+        // }
         
 
-        return specificTaskList;
+        return dummy;
     }
 
     public void saveTask(Task task) {
         task.setId(UUID.randomUUID().toString());
+        task.setCreated_at(new Date());
+        task.setUpdated_at(new Date());
         taskRepo.saveTask(task);
     }
 
@@ -96,7 +102,22 @@ public class TaskService {
         return taskRepo.getAllTasks();
     }
 
+    public void deleteTask(String id) {
+        taskRepo.deleteTask(id);
+    }
+
+    public Task getTaskById(String id) {
+        String taskJson = taskRepo.getTaskById(id);
+
+        return Task.jsonToTask(taskJson);
+    }
     // public List<Task> getAllTasks() {
+
+    public void editTask(@Valid Task task) {
+        task.setUpdated_at(new Date());
+        System.out.println(task.toString());
+        taskRepo.editTask(task);
+    }
 
     //     return taskRepo.getAllTasks();
     // }

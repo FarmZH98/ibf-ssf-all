@@ -14,13 +14,13 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import sg.edu.nus.iss.sffpracticetest.utils.Utils;
 
-public class Task implements Serializable {
+public class Task {
 
-    @NotEmpty(message = "ID cannot be empty")
     @Size(max = 50, message = "max of 50 characters")
     private String id;
 
@@ -31,14 +31,15 @@ public class Task implements Serializable {
     private String description;
 
     //@DateTimeFormat(pattern = "EEE, MM/dd/yyyy")
+    @NotNull(message = "Due Date cannot be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @FutureOrPresent(message = "due date should be a present or future date.")
+    @FutureOrPresent(message = "Due Date should be a present or future date.")
     private Date due_date; //to store this as epoch in redis. so might need to chg heres
 
-    @Pattern(regexp="^(Low|Medium|High)$",message="invalid priority. It should be Low|Medium|High")
+    @Pattern(regexp="^(low|medium|high)$",message="invalid priority. It should be Low|Medium|High")
     private String priority_level;
 
-    @Pattern(regexp="^(Pending|Started|Progress|Completed)$",message="invalid status. It should be Pending|Started|Progress|Completed")
+    @Pattern(regexp="^(pending|started|in_progress|completed)$",message="invalid status. It should be Pending|Started|Progress|Completed")
     private String status;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
+import jakarta.validation.Valid;
 import sg.edu.nus.iss.sffpracticetest.model.Task;
 import sg.edu.nus.iss.sffpracticetest.utils.Utils;
 
@@ -42,6 +43,22 @@ public class TaskRepo {
         }
 
         return tasksList;
+    }
+
+    public void deleteTask(String id) {
+        hashOps = template.opsForHash();
+        hashOps.delete(Utils.KEY_TASK, id);
+    }
+
+    public String getTaskById(String id) {
+        hashOps = template.opsForHash();
+        return hashOps.get(Utils.KEY_TASK, id);
+    }
+
+    public void editTask(@Valid Task task) {
+        hashOps = template.opsForHash();
+        String taskJson = task.toJsonString();
+        hashOps.put(Utils.KEY_TASK, task.getId(), taskJson);
     }
 
 }
